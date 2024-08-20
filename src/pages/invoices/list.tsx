@@ -75,7 +75,6 @@ export const InvoicePageList = () => {
           key="id"
           width={80}
           defaultFilteredValue={getDefaultFilter("id", filters)}
-          // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
           filterIcon={<SearchOutlined />}
           filterDropdown={(props) => {
             return (
@@ -116,9 +115,7 @@ export const InvoicePageList = () => {
                   src={src}
                   shape="square"
                   style={{
-                    backgroundColor: src
-                      ? "none"
-                      : getRandomColorFromString(name || ""),
+                    backgroundColor: getRandomColorFromString(name),
                   }}
                 >
                   <Typography.Text>{name?.[0]?.toUpperCase()}</Typography.Text>
@@ -187,7 +184,6 @@ export const InvoicePageList = () => {
                 <ShowButton
                   hideText
                   recordItemId={record.id}
-                  // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                   icon={<EyeOutlined />}
                 />
                 <DeleteButton hideText recordItemId={record.id} />

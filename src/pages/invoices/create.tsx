@@ -208,6 +208,7 @@ export const InvoicesPageCreate = () => {
                   <Row>
                     {services.map((service, index) => {
                       return (
+                        // biome-ignore lint/suspicious/noArrayIndexKey: You don't have a unique key for each service item when you create a new one
                         <Fragment key={index}>
                           <Col
                             xs={{ span: 7 }}
@@ -306,7 +307,6 @@ export const InvoicesPageCreate = () => {
                             <Button
                               danger
                               size="small"
-                              // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                               icon={<DeleteOutlined />}
                               onClick={() => {
                                 setServices((prev) =>
@@ -326,7 +326,6 @@ export const InvoicesPageCreate = () => {
                   />
                   <div style={{ padding: "12px" }}>
                     <Button
-                      // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                       icon={<PlusCircleOutlined />}
                       type="text"
                       className={styles.addNewServiceItemButton}

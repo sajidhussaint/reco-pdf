@@ -19,8 +19,21 @@ import { authProvider } from "@/providers/auth-provider";
 import { ConfigProvider } from "@/providers/config-provider";
 import { Logo } from "@/components/logo";
 import { Header } from "@/components/header";
-
-import { AccountsPageCreate, AccountsPageList,AccountsPageEdit } from '@/pages/accounts'
+import {
+  AccountsPageCreate,
+  AccountsPageEdit,
+  AccountsPageList,
+} from "@/pages/accounts";
+import {
+  ClientsPageCreate,
+  ClientsPageEdit,
+  ClientsPageList,
+} from "@/pages/clients";
+import {
+  InvoicePageList,
+  InvoicesPageCreate,
+  InvoicesPageShow,
+} from "@/pages/invoices";
 import "@refinedev/antd/dist/reset.css";
 import "./styles/custom.css";
 
@@ -41,6 +54,18 @@ const App: React.FC = () => {
                   list: "/accounts",
                   create: "/accounts/new",
                   edit: "/accounts/:id/edit",
+                },
+                {
+                  name: "clients",
+                  list: "/clients",
+                  create: "/clients/new",
+                  edit: "/clients/:id/edit",
+                },
+                {
+                  name: "invoices",
+                  list: "/invoices",
+                  show: "/invoices/:id",
+                  create: "/invoices/new",
                 },
               ]}
               options={{
@@ -74,6 +99,7 @@ const App: React.FC = () => {
                   }
                 >
                   <Route index element={<NavigateToResource />} />
+
                   <Route
                     path="/accounts"
                     element={
@@ -83,9 +109,34 @@ const App: React.FC = () => {
                     }
                   >
                     <Route index element={null} />
-                    <Route path='new' element={<AccountsPageCreate />} />
+                    <Route path="new" element={<AccountsPageCreate />} />
                   </Route>
-                  <Route path="/accounts/:id/edit" element={<AccountsPageEdit />} />
+                  <Route
+                    path="/accounts/:id/edit"
+                    element={<AccountsPageEdit />}
+                  />
+
+                  <Route
+                    path="/clients"
+                    element={
+                      <ClientsPageList>
+                        <Outlet />
+                      </ClientsPageList>
+                    }
+                  >
+                    <Route index element={null} />
+                    <Route path="new" element={<ClientsPageCreate />} />
+                  </Route>
+                  <Route
+                    path="/clients/:id/edit"
+                    element={<ClientsPageEdit />}
+                  />
+
+                  <Route path="/invoices">
+                    <Route index element={<InvoicePageList />} />
+                    <Route path="new" element={<InvoicesPageCreate />} />
+                    <Route path=":id" element={<InvoicesPageShow />} />
+                  </Route>
                 </Route>
 
                 <Route

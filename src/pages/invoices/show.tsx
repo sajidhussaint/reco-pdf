@@ -22,7 +22,7 @@ import { useStyles } from "./show.styled";
 export const InvoicesPageShow = () => {
   const { styles } = useStyles();
 
-  const { query: queryResult } = useShow<Invoice>({
+  const { queryResult } = useShow<Invoice>({
     meta: {
       populate: ["client", "account.logo"],
     },
@@ -41,7 +41,6 @@ export const InvoicesPageShow = () => {
         <>
           <Button
             disabled={!invoice}
-            // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
             icon={<FilePdfOutlined />}
             onClick={() => window.print()}
           >
